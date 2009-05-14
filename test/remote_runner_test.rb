@@ -67,4 +67,15 @@ context "the remote runner" do
     PreparedUtil.asynch_stuffing(custom_options)
   end
   
+  specify "should call prepare_worker before method invocation" do
+    class PrepareWorkerUtil < Util
+      def prepare_worker(method, options)
+      end
+    end
+    my_opts = {:voice => "Raspy"}
+    PrepareWorkerUtil.any_instance.expects(:stuffing).with(my_opts)
+    PrepareWorkerUtil.any_instance.expects(:prepare_worker).with('stuffing', my_opts).once
+    PrepareWorkerUtil.asynch_stuffing(my_opts)
+  end
+    
 end
