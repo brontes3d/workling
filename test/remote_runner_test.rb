@@ -55,4 +55,16 @@ context "the remote runner" do
     Util.any_instance.expects(:stuffing).with(all_of(has_entry(:flavor => 'purple'), has_entry(:color => 'purple'))).once
     Util.asynch_stuffing(custom_options)
   end
+  
+  specify "should pass options through prepare_options before serialize" do
+    class PreparedUtil < Util
+      def prepare_options(options)
+        options[:flavor] = "delicious"
+      end
+    end
+    custom_options  = { :color  => 'nutritious' }
+    PreparedUtil.any_instance.expects(:stuffing).with(all_of(has_entry(:flavor => 'delicious'), has_entry(:color => 'nutritious'))).once
+    PreparedUtil.asynch_stuffing(custom_options)
+  end
+  
 end
