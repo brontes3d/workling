@@ -78,7 +78,7 @@ module Workling
     def dispatch_to_worker_method(method, options = {})
       begin
         options = default_options.merge(options)
-        prepare_worker(method, options) if respond_to?(:prepare_worker)
+        self.prepare_worker(method, options) if respond_to?(:prepare_worker)
         self.send(method, options)
       rescue Workling::WorklingError => e
         raise e

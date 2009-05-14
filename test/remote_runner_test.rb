@@ -77,5 +77,16 @@ context "the remote runner" do
     PrepareWorkerUtil.any_instance.expects(:prepare_worker).with('stuffing', my_opts).once
     PrepareWorkerUtil.asynch_stuffing(my_opts)
   end
-    
+  
+  specify "should handle exceptions by calling notify_exception" do
+    class ExceptionHandlingUtil < Util
+      def stuffing(method, options)
+        raise ArgumentError, "we need bread"
+      end
+    end
+    opts = {:fruit => "Apples"}
+    ExceptionHandlingUtil.any_instance.expects(:notify_exception).with(is_a(ArgumentError), "stuffing", opts).once
+    ExceptionHandlingUtil.asynch_stuffing(opts)
+  end
+  
 end
