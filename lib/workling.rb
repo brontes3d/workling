@@ -49,7 +49,7 @@ module Workling
   end
 
   mattr_accessor :load_path
-  @@load_path = [ File.expand_path(path('app', 'workers')) ]
+  @@load_path = [ File.expand_path(path('app', 'workers', '*.rb')) ]
 
   VERSION = "0.4.9"
 
