@@ -88,5 +88,5 @@ context "the remote runner" do
     ExceptionHandlingUtil.any_instance.expects(:notify_exception).with(is_a(ArgumentError), "stuffing", opts).once
     ExceptionHandlingUtil.asynch_stuffing(opts)
   end
-  
+    
 end

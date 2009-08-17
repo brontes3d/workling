@@ -189,6 +189,7 @@ end
 
 require "workling/discovery"
 require "workling/base"
+require "workling/send_only"
 require "workling/remote"
 require "workling/return/store/base"
 require "workling/return/store/memory_return_store"

@@ -61,6 +61,7 @@ module Workling
       uid = Workling::Remote.generate_uid(clazz, method)
       options[:uid] = uid if options.kind_of?(Hash) && !options[:uid]
       instance = Workling.find(clazz, method) # this line raises a WorklingError if the method does not exist. 
+      options = instance.prepare_for_method(method, options) if instance.respond_to?(:prepare_for_method)
       instance.prepare_options(options) if instance.respond_to?(:prepare_options)
       dispatcher.run(clazz, method, options)
       uid

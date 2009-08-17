@@ -8,6 +8,7 @@ context "discovery" do
   
   specify "should not discover non-worker classes" do
     discovered = Workling::Discovery.discovered
-    discovered.all? { |clazz| clazz.superclass == Workling::Base }.should.blaming("some discovered classes were not workers").equal true
+    discovered.all? { |clazz| clazz.ancestors.include?(Workling::Base) 
+                    }.should.blaming("some discovered classes were not workers: #{discovered.inspect}").equal true
   end
 end

@@ -21,7 +21,7 @@ context "the invoker 'basic poller'" do
     
     # Don't take longer than 10 seconds to shut this down. 
     Timeout::timeout(10) do
-      listener = Thread.new { @invoker.listen }
+      listener = Thread.new{ @invoker.listen }
       @invoker.stop
       listener.join
     end

@@ -48,7 +48,9 @@ require "workling/return/store/rudeq_return_store"
 require "workling/return/store/iterator"
 require "mocks/client"
 require "clients/memory_queue_client"
+require "invokers/on_demand_invoker"
 require "runners/thread_runner"
+require "runners/test_q_runner"
 require "mocks/client"
 
 # worklings are in here.

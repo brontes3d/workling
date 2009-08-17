@@ -34,6 +34,11 @@ module Workling
         # find the worker instance and invoke it. Invoking the worker method like this ensures for 
         # consistent logging and handling of propagated exceptions. 
         def dispatch!(clazz, method, options)
+          # begin
+          #   raise "fromwhere"
+          # rescue => e
+          #   puts "dispatch called from " + e.backtrace.join("\n")
+          # end
           Workling.find(clazz, method).dispatch_to_worker_method(method, options)
         end
       end

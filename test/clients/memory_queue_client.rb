@@ -15,7 +15,7 @@ module Workling
       end
       
       # immediately invokes the required worker block
-      def request(work_type, arguments)
+      def request(work_type, arguments)        
         if subscription = @subscribers[work_type]
           subscription.call(arguments)
         else

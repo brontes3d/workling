@@ -45,6 +45,13 @@ context "class and method routing" do
     routing = Workling::Routing::ClassAndMethodRouting.new
     routing.queue_for(Util, 'echo').should == 'utils__echo'
   end
+  
+  # specify "support non-local queues" do
+  #   routing = Workling::Routing::ClassAndMethodRouting.new
+  #   puts routing.queue_for(SendOnlyUtil, 'echo').inspect
+  #   puts routing.queue_for(SendOnlyUtil, 'transform').inspect
+  # end
+  
 end
 
 
